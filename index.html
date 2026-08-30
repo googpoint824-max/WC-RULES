@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>WheatCraft | قوانين السيرفر</title>
+    <title>WheatCraft | Official Server</title>
 
-    <!-- CounterAPI V2 -->
-    <script src="https://jsdelivr.net"></script>
-
+    <!-- SF Arabic / SF Pro -->
     <style>
-
         @font-face {
             font-family: "SF Arabic";
-            src: local("SF Arabic");
+            src: local("SF Arabic"),
+                 local("SF Arabic Display"),
+                 local("SF Pro Display"),
+                 local("SF Pro Text");
             font-weight: 100 900;
         }
 
@@ -21,313 +22,668 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            /* استخدام مؤشر الماوس الأصفر المخصص الذي اخترته */
-            cursor: url("https://rw-designer.com"), auto !important;
         }
+
+        /* =========================
+           CUSTOM MOUSE
+        ========================= */
+
+        * {
+            cursor: url("Nav_Friend.ani"), auto !important;
+  }
+        /* =========================
+           BODY
+        ========================= */
 
         body {
             min-height: 100vh;
-            font-family: "SF Arabic", Arial, sans-serif;
-            color: white;
 
-            /* الخلفية الهندسية الصفراء المظللة لسهولة قراءة النصوص */
+            font-family:
+                "SF Arabic",
+                "SF Pro Display",
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            color: #fff;
+            overflow-x: hidden;
+
             background:
                 linear-gradient(
-                    rgba(0,0,0,.75),
-                    rgba(0,0,0,.90)
+                    135deg,
+                    rgba(35, 28, 0, 0.94),
+                    rgba(8, 8, 8, 0.98)
                 ),
-                url("https://unsplash.com");
+                url("https://images.unsplash.com/photo-1605106702842-01a887a31122");
 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
 
+        /* Golden glow */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            top: -250px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 900px;
+            height: 600px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255, 215, 0, 0.18),
+                    transparent 70%
+                );
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+        /* =========================
+           CONTAINER
+        ========================= */
+
         .container {
             width: 92%;
-            max-width: 950px;
+            max-width: 1000px;
+
             margin: auto;
+
             padding: 60px 0;
         }
 
-        /* HEADER */
+        /* =========================
+           HEADER
+        ========================= */
 
         header {
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
 
-        header h1 {
-            font-size: 55px;
+        .logo {
+            font-size: clamp(42px, 7vw, 68px);
+
             font-weight: 900;
-            text-shadow: 0 5px 15px #000;
+
+            letter-spacing: -2px;
+
+            text-shadow:
+                0 0 15px rgba(255, 215, 0, 0.25),
+                0 8px 30px #000;
         }
 
-        header h1 span {
+        .logo span {
             color: #FFD700;
         }
 
         header p {
-            margin-top: 10px;
-            color: #ccc;
+            margin-top: 12px;
+
+            color: #d0d0d0;
+
             font-size: 19px;
+
+            font-weight: 500;
         }
 
-        /* SERVER */
+        /* =========================
+           SERVER CARD
+        ========================= */
 
-        .server-box {
-            background: rgba(20,20,20,.94);
+        .server-card {
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(25, 25, 25, 0.96),
+                    rgba(10, 10, 10, 0.94)
+                );
+
             border: 2px solid #FFD700;
-            border-radius: 16px;
-            padding: 25px;
+
+            border-radius: 24px;
+
+            padding: 35px;
+
             text-align: center;
 
+            margin-bottom: 35px;
+
             box-shadow:
-                0 0 30px rgba(255,215,0,.15);
+                0 20px 60px rgba(0, 0, 0, 0.5),
+                0 0 35px rgba(255, 215, 0, 0.12);
+
+            backdrop-filter: blur(15px);
+        }
+
+        .ip-title {
+            color: #aaa;
+
+            font-size: 16px;
+
+            margin-bottom: 15px;
+        }
+
+        /* =========================
+           IP BOXES
+        ========================= */
+
+        .ip-container {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
 
             margin-bottom: 25px;
         }
 
         .server-ip {
-            font-size: 24px;
-            font-weight: bold;
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 9px;
+
+            background: #080808;
+
+            border:
+                1px solid rgba(255, 215, 0, 0.5);
+
+            border-radius: 50px;
+
+            padding: 13px 22px;
+
             color: #FFD700;
-            margin-bottom: 15px;
+
+            font-family: monospace;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            box-shadow:
+                inset 0 0 15px rgba(255, 215, 0, 0.05);
+
+            transition: 0.3s ease;
         }
+
+        .server-ip:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 25px rgba(255, 215, 0, 0.12);
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
 
         .buttons {
             display: flex;
+
             justify-content: center;
-            gap: 12px;
+
+            align-items: center;
+
+            gap: 15px;
+
             flex-wrap: wrap;
         }
 
-        .button {
-            display: inline-block;
-            padding: 13px 22px;
-            border-radius: 9px;
-            text-decoration: none;
-            color: white;
-            background: #9c7a00;
-            font-weight: bold;
+        .btn {
+            display: inline-flex;
 
-            transition:
-                transform .2s,
-                background .2s,
-                box-shadow .2s;
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 10px;
+
+            min-width: 190px;
+
+            padding: 14px 25px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            text-decoration: none;
+
+            color: #111;
+
+            background: #FFD700;
+
+            font-family: inherit;
+
+            font-size: 16px;
+
+            font-weight: 800;
+
+            transition: 0.3s ease;
+
+            cursor: pointer;
         }
 
-        .button:hover {
-            transform: translateY(-3px);
-            background: #c9a900;
+        .btn:hover {
+            transform:
+                translateY(-4px) scale(1.02);
+
+            background: #fff;
 
             box-shadow:
-                0 5px 20px rgba(255,215,0,.25);
+                0 10px 30px rgba(255, 215, 0, 0.25);
         }
+
+        /* =========================
+           DISCORD
+        ========================= */
 
         .discord {
             background: #5865F2;
+
+            color: #fff;
         }
 
         .discord:hover {
-            background: #4752c4;
+            background: #4752C4;
+
+            color: #fff;
+
+            box-shadow:
+                0 10px 30px rgba(88, 101, 242, 0.35);
         }
 
-        /* RULES */
+        .discord-icon {
+            width: 24px;
+            height: 24px;
+
+            fill: currentColor;
+        }
+
+        /* =========================
+           RULES
+        ========================= */
 
         .rules {
-            background: rgba(18,18,18,.94);
-            border: 1px solid rgba(255,255,255,.12);
-            border-radius: 16px;
-            padding: 30px;
+            background:
+                rgba(12, 12, 12, 0.95);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.10);
+
+            border-radius: 25px;
+
+            padding: 38px;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.35);
+
+            backdrop-filter: blur(15px);
         }
 
         .rules-title {
             text-align: center;
-            margin-bottom: 25px;
-            font-size: 30px;
+
             color: #FFD700;
+
+            font-size: 32px;
+
+            font-weight: 900;
+
+            margin-bottom: 32px;
         }
 
-        .rule {
-            background: rgba(255,255,255,.045);
-            border-right: 4px solid #FFD700;
-            border-radius: 10px;
-            padding: 18px;
-            margin-bottom: 13px;
+        /* =========================
+           RULE
+        ========================= */
 
-            transition:
-                transform .2s,
-                background .2s,
-                box-shadow .2s;
+        .rule {
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 18px;
+
+            background:
+                rgba(255, 255, 255, 0.035);
+
+            border-right:
+                5px solid #FFD700;
+
+            border-radius: 14px;
+
+            padding: 22px;
+
+            margin-bottom: 15px;
+
+            transition: 0.3s ease;
+        }
+
+        .rule:last-child {
+            margin-bottom: 0;
         }
 
         .rule:hover {
-            transform: translateX(-5px);
-            background: rgba(255,215,0,.08);
+            transform:
+                translateX(-7px);
+
+            background:
+                rgba(255, 215, 0, 0.07);
 
             box-shadow:
-                0 0 15px rgba(255,215,0,.08);
+                0 10px 30px rgba(255, 215, 0, 0.07);
         }
 
-        .rule h2 {
-            font-size: 20px;
-            margin-bottom: 7px;
-            color: #FFD700;
-        }
+        .rule-number {
+            min-width: 48px;
 
-        .rule p {
-            color: #ddd;
-            line-height: 1.8;
-            font-size: 16px;
-        }
+            height: 48px;
 
-        /* AUDIO CONTROL AND PLAYER */
-        .audio-wrapper {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 1000;
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-        }
 
-        .spotify-container {
-            display: none; /* إخفاء المشغل الافتراضي والتحكم من خلال الزر المخصص */
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-
-        .spotify-container.show {
-            display: block;
-        }
-
-        .audio-control {
-            background: rgba(20, 20, 20, 0.9);
-            border: 2px solid #FFD700;
-            color: #FFD700;
-            padding: 12px 20px;
-            border-radius: 50px;
-            font-weight: bold;
-            display: flex;
             align-items: center;
+
             justify-content: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            transition: all 0.3s ease;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255, 215, 0, 0.12);
+
+            color: #FFD700;
+
+            font-size: 21px;
+
+            font-weight: 900;
         }
 
-        .audio-control:hover {
-            transform: scale(1.05);
+        .rule-content {
+            flex: 1;
+        }
+
+        .rule-content h2 {
+            color: #FFD700;
+
+            font-size: 20px;
+
+            margin-bottom: 7px;
+
+            font-weight: 800;
+        }
+
+        .rule-content p {
+            color: #d2d2d2;
+
+            font-size: 16px;
+
+            line-height: 1.9;
+
+            font-weight: 500;
+        }
+
+        /* =========================
+           VISITS
+        ========================= */
+
+        .visits {
+            margin-top: 25px;
+
+            padding: 25px;
+
+            text-align: center;
+
+            background:
+                rgba(0, 0, 0, 0.85);
+
+            border:
+                1px solid rgba(255, 215, 0, 0.4);
+
+            border-radius: 17px;
+        }
+
+        .visits-title {
+            color: #bbb;
+
+            font-size: 17px;
+
+            margin-bottom: 8px;
+        }
+
+        #visits {
+            color: #FFD700;
+
+            font-size: 40px;
+
+            font-weight: 900;
+
+            text-shadow:
+                0 0 20px rgba(255, 215, 0, 0.25);
+        }
+
+        /* =========================
+           MUSIC
+        ========================= */
+
+        .music-widget {
+            position: fixed;
+
+            bottom: 25px;
+
+            left: 25px;
+
+            z-index: 9999;
+        }
+
+        .music-button {
+            border:
+                2px solid #FFD700;
+
+            background:
+                rgba(10, 10, 10, 0.95);
+
+            color: #FFD700;
+
+            padding: 13px 22px;
+
+            border-radius: 50px;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            font-weight: 800;
+
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.5);
+
+            transition: 0.3s ease;
+
+            cursor: pointer;
+        }
+
+        .music-button:hover {
             background: #FFD700;
-            color: #000;
+
+            color: #111;
+
+            transform:
+                translateY(-3px);
         }
 
-        /* FOOTER */
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
             text-align: center;
-            color: #888;
+
             margin-top: 30px;
+
+            color: #777;
+
             font-size: 14px;
         }
 
-        /* MOBILE */
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 600px) {
 
-            header h1 {
-                font-size: 40px;
-            }
-
             .container {
                 padding: 35px 0;
+            }
+
+            .server-card {
+                padding: 25px 15px;
             }
 
             .rules {
                 padding: 20px;
             }
 
-            .server-ip {
-                font-size: 19px;
+            .rule {
+                padding: 17px;
             }
-            
-            .audio-wrapper {
+
+            .rule-content p {
+                font-size: 14px;
+            }
+
+            .server-ip {
+                width: 100%;
+                font-size: 14px;
+                padding: 12px 15px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .music-widget {
                 bottom: 15px;
                 left: 15px;
             }
 
-            .audio-control {
-                padding: 10px 15px;
-                font-size: 14px;
-            }
         }
 
     </style>
+
 </head>
+
 
 <body>
 
-<!-- قسم الموسيقى والمشغل المدمج لـ Spotify -->
-<div class="audio-wrapper">
-    <div class="spotify-container" id="spotify-box">
-        <iframe src="https://spotify.com" 
-                width="300" 
-                height="80" 
-                frameBorder="0" 
-                allowfullscreen="" 
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                loading="lazy">
-        </iframe>
-    </div>
-    <button class="audio-control" id="music-btn" onclick="toggleSpotify()">
-        🎵 إظهار مشغل الموسيقى
-    </button>
-</div>
 
 <div class="container">
 
-    <!-- HEADER -->
+
+    <!-- =========================
+         HEADER
+    ========================== -->
 
     <header>
 
-        <h1>
+        <div class="logo">
             ⛏️ <span>WheatCraft</span>
-        </h1>
+        </div>
 
         <p>
-            📜 قوانين سيرفر ماينكرافت
+            📜 قوانين سيرفر ماينكرافت الرسمي
         </p>
 
     </header>
 
 
-    <!-- SERVER -->
+    <!-- =========================
+         SERVER
+    ========================== -->
 
-    <div class="server-box">
+    <div class="server-card">
 
-        <div class="server-ip">
-            🎮 YOUR_SERVER_IP
+        <div class="ip-title">
+            🎮 معلومات الاتصال بالسيرفر
         </div>
+
+
+        <div class="ip-container">
+
+            <!-- JAVA -->
+
+            <div class="server-ip">
+                ☕ Java:
+                YOUR_JAVA_IP:25565
+            </div>
+
+
+            <!-- BEDROCK -->
+
+            <div class="server-ip">
+                📱 Bedrock:
+                YOUR_BEDROCK_IP:19132
+            </div>
+
+        </div>
+
 
         <div class="buttons">
 
-            <a
-                class="button"
-                href="minecraft://?addExternalServer=WheatCraft|YOUR_SERVER_IP"
+
+            <!-- COPY JAVA -->
+
+            <button
+                class="btn"
+                onclick="copyIP('YOUR_JAVA_IP:25565')"
             >
-                🎮 دخول السيرفر
-            </a>
+                ☕ نسخ Java IP
+            </button>
+
+
+            <!-- COPY BEDROCK -->
+
+            <button
+                class="btn"
+                onclick="copyIP('YOUR_BEDROCK_IP:19132')"
+            >
+                📱 نسخ Bedrock IP
+            </button>
+
+
+            <!-- DISCORD -->
 
             <a
-                class="button discord"
+                class="btn discord"
                 href="YOUR_DISCORD_LINK"
                 target="_blank"
                 rel="noopener noreferrer"
             >
-                💬 Discord
+
+                <svg
+                    class="discord-icon"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+
+                    <path d="M19.54 0c1.36 0 2.46 1.1 2.46 2.46v19.08c0 1.36-1.1 2.46-2.46 2.46H4.46C3.1 24 2 22.9 2 21.54V2.46C2 1.1 3.1 0 4.46 0h15.08zM8.56 8.08c-.68 0-1.24.56-1.24 1.24s.56 1.24 1.24 1.24 1.24-.56 1.24-1.24-.56-1.24-1.24-1.24zm6.88 0c-.68 0-1.24.56-1.24 1.24s.56 1.24 1.24 1.24 1.24-.56 1.24-1.24-.56-1.24-1.24-1.24zM7.04 14.5c1.54 1.14 2.98 1.7 4.96 1.7s3.42-.56 4.96-1.7l-.7-1.02c-1.29.95-2.42 1.4-4.26 1.4s-2.97-.45-4.26-1.4l-.7 1.02z"/>
+
+                </svg>
+
+                مجتمع الديسكورد
+
             </a>
 
         </div>
@@ -335,90 +691,359 @@
     </div>
 
 
-    <!-- RULES -->
+    <!-- =========================
+         RULES
+    ========================== -->
 
     <div class="rules">
 
-        <h2 class="rules-title">
-            📜 قوانين السيرفر
-        </h2>
-
-        <div class="rule">
-            <h2>① الاحترام</h2>
-            <p>
-                يمنع السب أو الإهانة أو التنمر على اللاعبين.
-                يجب احترام جميع أعضاء السيرفر.
-            </p>
+        <div class="rules-title">
+            📜 دستور وقوانين السيرفر
         </div>
 
-        <div class="rule">
-            <h2>② ممنوع الغش</h2>
-            <p>
-                يمنع استخدام الهاكات أو أي برامج تمنح اللاعب
-                أفضلية غير عادلة.
-            </p>
-        </div>
 
         <div class="rule">
-            <h2>③ ممنوع التخريب</h2>
-            <p>
-                يمنع تخريب ممتلكات اللاعبين أو تدمير مبانيهم
-                بدون إذن.
-            </p>
+
+            <div class="rule-number">①</div>
+
+            <div class="rule-content">
+
+                <h2>
+                    الاحترام المتبادل
+                </h2>
+
+                <p>
+                    يمنع منعاً باتاً القذف، السب، التنمر،
+                    أو إثارة الفتن والمواضيع العنصرية
+                    والسياسية بكل أشكالها.
+                </p>
+
+            </div>
+
         </div>
 
-        <div class="rule">
-            <h2>④ ممنوع السرقة</h2>
-            <p>
-                يمنع سرقة أغراض اللاعبين أو أخذ مواردهم
-                بدون موافقتهم.
-            </p>
-        </div>
 
         <div class="rule">
-            <h2>⑤ ممنوع استغلال الأخطاء</h2>
-            <p>
-                يمنع استغلال Bugs أو ثغرات السيرفر للحصول
-                على أموال أو أغراض بطريقة غير شرعية.
-            </p>
+
+            <div class="rule-number">②</div>
+
+            <div class="rule-content">
+
+                <h2>
+                    مكافحة الغش
+                </h2>
+
+                <p>
+                    استخدام الهاكات أو الكلاينتات المعدلة
+                    التي تعطي ميزة غير عادلة مثل X-Ray،
+                    Fly أو Auto-clicker يعرض حسابك للعقوبة.
+                </p>
+
+            </div>
+
         </div>
 
-        <div class="rule">
-            <h2>⑥ ممنوع الإزعاج</h2>
-            <p>
-                يمنع إزعاج اللاعبين أو السبام في الشات
-                أو استخدام الرسائل بشكل مزعج.
-            </p>
-        </div>
 
         <div class="rule">
-            <h2>⑦ احترام الإدارة</h2>
-            <p>
-                يجب احترام قرارات الإدارة وعدم محاولة
-                استغلال الصلاحيات.
-            </p>
+
+            <div class="rule-number">③</div>
+
+            <div class="rule-content">
+
+                <h2>
+                    ممنوع التخريب
+                </h2>
+
+                <p>
+                    يحظر هدم أو إفساد ممتلكات وأراضي
+                    اللاعبين الآخرين بدون إذن.
+                </p>
+
+            </div>
+
         </div>
 
+
         <div class="rule">
-            <h2>⑧ العقوبات</h2>
-            <p>
-                مخالفة القوانين تعرضك للعقوبات التي تبدأ من التحذير وتصل إلى الحظر النهائي (Ban) من السيرفر.
-            </p>
+
+            <div class="rule-number">④</div>
+
+            <div class="rule-content">
+
+                <h2>
+                    ممنوع السرقة
+                </h2>
+
+                <p>
+                    يمنع أخذ موارد أو أغراض اللاعبين
+                    الآخرين دون موافقتهم.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="rule">
+
+            <div class="rule-number">⑤</div>
+
+            <div class="rule-content">
+
+                <h2>
+                    استغلال الـ Bugs
+                </h2>
+
+                <p>
+                    يمنع استغلال الثغرات أو Bugs للحصول
+                    على أموال أو أغراض بطريقة غير شرعية.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="rule">
+
+            <div class="rule-number">⑥</div>
+
+            <div class="rule-content">
+
+                <h2>
+                    منع الـ Spam
+                </h2>
+
+                <p>
+                    يمنع تكرار الرسائل أو إغراق الشات
+                    أو نشر إعلانات لسيرفرات أخرى.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="rule">
+
+            <div class="rule-number">⑦</div>
+
+            <div class="rule-content">
+
+                <h2>
+                    احترام الإدارة
+                </h2>
+
+                <p>
+                    يجب احترام الإدارة وقراراتها.
+                    المشاكل والاعتراضات يتم طرحها
+                    عبر تذاكر الدعم في الديسكورد.
+                </p>
+
+            </div>
+
         </div>
 
     </div>
 
-    <!-- FOOTER -->
+
+    <!-- =========================
+         VISITS
+    ========================== -->
+
+    <div class="visits">
+
+        <div class="visits-title">
+            👥 عدد زيارات الموقع
+        </div>
+
+        <div id="visits">
+            ...
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
     <footer>
-        <p>© 2026 WheatCraft. جميع الحقوق محفوظة.</p>
+        © 2026 WheatCraft Network.
+        جميع الحقوق محفوظة.
     </footer>
+
 
 </div>
 
+
+<!-- =========================
+     MUSIC BUTTON
+========================= -->
+
+<div class="music-widget">
+
+    <button
+        class="music-button"
+        id="musicButton"
+        onclick="toggleMusic()"
+    >
+        🔊 تشغيل الموسيقى
+    </button>
+
+</div>
+
+
+<!-- =========================
+     AUDIO
+========================= -->
+
+<audio
+    id="backgroundMusic"
+    loop
+    preload="auto"
+>
+
+    <source
+        src="YOUR_MUSIC_URL.mp3"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
 <script>
-    function toggleSpotify() {
-        const spotifyBox = document.getElementById('spotify-box');
-        const btn = document.getElementById('music-btn');
-        
-        if (spotifyBox.classList.contains('show')) {
-            spotifyBox.classList.remove('show');
+
+
+/* =========================
+   COPY IP
+========================= */
+
+function copyIP(ip) {
+
+    navigator.clipboard.writeText(ip)
+        .then(() => {
+
+            alert(
+                "✅ تم نسخ IP السيرفر:\n" + ip
+            );
+
+        })
+        .catch(() => {
+
+            alert(
+                "❌ لم يتم نسخ الـ IP، انسخه يدوياً:\n" + ip
+            );
+
+        });
+
+}
+
+
+/* =========================
+   MUSIC
+========================= */
+
+const music =
+    document.getElementById(
+        "backgroundMusic"
+    );
+
+const musicButton =
+    document.getElementById(
+        "musicButton"
+    );
+
+
+music.volume = 0.25;
+
+
+function toggleMusic() {
+
+    if (music.paused) {
+
+        music.play()
+            .then(() => {
+
+                musicButton.textContent =
+                    "🔇 كتم الموسيقى";
+
+            })
+            .catch(() => {
+
+                alert(
+                    "⚠️ ضع رابط MP3 صحيح مكان YOUR_MUSIC_URL.mp3"
+                );
+
+            });
+
+    } else {
+
+        music.pause();
+
+        musicButton.textContent =
+            "🔊 تشغيل الموسيقى";
+
+    }
+
+}
+
+
+/* =========================
+   VISITS COUNTER
+========================= */
+
+async function updateVisits() {
+
+    const visits =
+        document.getElementById(
+            "visits"
+        );
+
+    try {
+
+        const response =
+            await fetch(
+                "https://api.counterapi.dev/v1/wheatcraft-site/visits/up"
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Counter API Error"
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        visits.textContent =
+            Number(
+                data.count
+            ).toLocaleString("en-US");
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        visits.textContent = "—";
+
+    }
+
+}
+
+
+updateVisits();
+
+
+</script>
+
+
+</body>
+
+</html>
